@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    .campo {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.95rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      font-family: Arial, sans-serif;
+    }
+
+    input:focus {
+      border-color: #4a90d9;
+    }
+
+    button {
+      margin-top: 0.5rem;
+      width: 100%;
+      padding: 0.65rem;
+      background-color: #4a90d9;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+    }
+
+    button:hover {
+      background-color: #3a7bc8;
+    }
+
+    #resultado {
+      display: none;
+      margin-top: 1.2rem;
+      padding: 1rem;
+      background: #f6f8fa;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.92rem;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    #resultado strong {
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Cadastro</h1>
+
+    <form id="formCadastro" novalidate>
+
+      <div class="campo">
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          placeholder="Digite seu nome"
+          required
+          minlength="2"
+        >
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Digite seu e-mail"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="idade">Idade</label>
+        <input
+          type="number"
+          id="idade"
+          placeholder="Digite sua idade"
+          required
+          min="0"
+          max="120"
+        >
+      </div>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('formCadastro');
+    const resultado = document.getElementById('resultado');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const nome  = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const idade = document.getElementById('idade').value;
+
+      resultado.innerHTML =
+        '<strong>Nome:</strong> ' + nome + '<br>' +
+        '<strong>E-mail:</strong> ' + email + '<br>' +
+        '<strong>Idade:</strong> ' + idade + ' anos';
+
+      resultado.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
